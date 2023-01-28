@@ -2,6 +2,14 @@
 
 ## note
 
+### Typescript
+
+https://github.com/reduxjs/cra-template-redux-typescript
+
+`npx create-react-app react-imp-ex-script --template redux-typescript`
+
+tsx = jsx + ts
+
 ### Redux
 
 https://pjchender.dev/webdev/note-without-redux/
@@ -9,6 +17,10 @@ https://pjchender.dev/webdev/note-without-redux/
 https://pjchender.dev/react/redux-toolkit/
 
 Redux Toolkit => configureStore 可以接收 reducer 後建立 store
+
+https://zhuanlan.zhihu.com/p/126481634
+
+redux-thunk vs redux-saga 總結使用 Redux Toolkit 的 thunk 即可，將 Fetch 非同步抽去共用
 
 ### pjchender
 

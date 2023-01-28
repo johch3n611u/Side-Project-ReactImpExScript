@@ -1,0 +1,220 @@
+$ctgVersion=Staged
+$contentCatalog=wtcmyContentCatalog
+$productCatalog=wtcmyProductCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=$ctgVersion])[default=$contentCatalog:$ctgVersion]
+$productCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$productCatalog]),CatalogVersion.version[default=$ctgVersion])[default=$productCatalog:$ctgVersion]
+$siteResource=jar:com.aswatson.constants.ElabsampledataConstants&/sampledata/wtc/images/01_wtcmy/contentCatalogs/$contentCatalog
+$lang=en
+
+# A-Supplier Category Tree
+INSERT_UPDATE CMSFlexComponent;$contentCV[unique=true];uid[unique=true];name;flexType
+                              ;;SupplierCategoryTreeComponent;Category Tree Component;CategoryTreeFlexComponent
+
+INSERT_UPDATE ContentSlot;$contentCV[unique = true];uid[unique = true];name;active[default = true];cmsComponents(uid,$contentCV)
+                         ;;SupplierCategoryTreeSlot;E2 Supplier Category Tree Slot;;SupplierCategoryTreeComponent
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique = true];uid[unique = true];position[unique = true];page(uid, $contentCV)[unique = true][default = 'e2SupplierLandingPage'];contentSlot(uid, $contentCV)[unique = true];
+                                ;;SupplierCategoryTree-e2SupplierLandingPage;SupplierCategoryTree;;SupplierCategoryTreeSlot;
+
+
+# B-Supplier Top Banner
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/png'];altText;folder(qualifier)[default='images']
+				           ;;SupplierTopBannerMedia;SupplierTopBanner.png;$siteResource/images/theme/SupplierTopBanner.png;image/png;;
+
+INSERT_UPDATE E2BannerComponent;$contentCV[unique=true];uid[unique=true];name;media(code, $contentCV)[lang=$lang]
+							   ;;SupplierTopBannerComponent;Supplier Landing Page Top Banner Component;SupplierTopBannerMedia
+
+INSERT_UPDATE ContentSlot;$contentCV[unique = true];uid[unique = true];name;active[default = true];cmsComponents(uid,$contentCV)
+                         ;;SupplierTopBannerSlot;E2 Supplier Top Banner Slot;;SupplierTopBannerComponent
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique = true];uid[unique = true];position[unique = true];page(uid, $contentCV)[unique = true][default = 'e2SupplierLandingPage'];contentSlot(uid, $contentCV)[unique = true];
+                                ;;SupplierTopBanner-e2SupplierLandingPage;SupplierTopBanner;;SupplierTopBannerSlot;
+
+
+# C-Rotating Banner Component
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/png'];altText;folder(qualifier)[default='images'];
+                   ;;SupplierBrandBannerMedia1;SuperBrandPromotionComponent1.png;$siteResource/images/theme/SuperBrandPromotionComponent1.png;image/png;;
+                   ;;SupplierBrandBannerMedia2;SuperBrandPromotionComponent1.png;$siteResource/images/theme/SuperBrandPromotionComponent1.png;image/png;;
+                   ;;SupplierBrandBannerMedia3;SuperBrandPromotionComponent2.png;$siteResource/images/theme/SuperBrandPromotionComponent2.png;image/png;;
+
+INSERT_UPDATE E2BannerComponent;$contentCV[unique=true];uid[unique=true];name;media(code, $contentCV)[lang=$lang];headline[lang=$lang];content[lang=$lang];urlLink[default='/']
+							   ;;SupplierBrandPromoteBannerComponent1;Supplier Brand Promote Carousel Banner 1;SupplierBrandBannerMedia1;Supplier Banner 1 Headline; Banner 1 Content;
+							   ;;SupplierBrandPromoteBannerComponent2;Supplier Brand Promote Carousel Banner 2;SupplierBrandBannerMedia2;Supplier Banner 2 Headline; Banner 2 Content;
+							   ;;SupplierBrandPromoteBannerComponent3;Supplier Brand Promote Carousel Banner 3;SupplierBrandBannerMedia3;Supplier Banner 3 Headline; Banner 3 Content;
+
+INSERT_UPDATE E2RotatingImagesComponent;$contentCV[unique=true];uid[unique=true];name;displayTitle[lang=$lang];banners(uid,$contentCV)
+									   ;;SupplierCLPRotatingImagesComponent;Supplier CLP Main Banner Carousel;Supplier CLP Main Banner Carousel;SupplierBrandPromoteBannerComponent1, SupplierBrandPromoteBannerComponent2, SupplierBrandPromoteBannerComponent3
+
+INSERT_UPDATE ContentSlot;$contentCV[unique = true];uid[unique = true];name;active[default = true];cmsComponents(uid,$contentCV)
+                         ;;SupplierCLPBannerCarouselSlot;Supplier CLP Banner Carousel Slot;;SupplierCLPRotatingImagesComponent
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique = true];uid[unique = true];position[unique = true];page(uid, $contentCV)[unique = true][default = 'e2SupplierLandingPage'];contentSlot(uid, $contentCV)[unique = true];
+                                ;;SupplierCLPBannerCarousel-e2SupplierLandingPage;SupplierCLPBannerCarousel;;SupplierCLPBannerCarouselSlot;
+
+
+# D-All Link Component
+INSERT_UPDATE CMSFlexComponent;$contentCV[unique=true];uid[unique=true];name;flexType
+							  ;;SupplierShopAllLinkComponent;Supplier Shop All Link Component;CategoryTextComponent
+
+INSERT_UPDATE ContentSlot;$contentCV[unique = true];uid[unique = true];name;active[default = true];cmsComponents(uid,$contentCV)
+                         ;;SupplierShopAllLinkSlot;Supplier Shop All Link Slot;;SupplierShopAllLinkComponent
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique = true];uid[unique = true];position[unique = true];page(uid, $contentCV)[unique = true][default = 'e2SupplierLandingPage'];contentSlot(uid, $contentCV)[unique = true];
+                                ;;SupplierShopAllLink-e2SupplierLandingPage;SupplierShopAllLink;;SupplierShopAllLinkSlot;
+
+
+# E-Related Category Text Component
+INSERT_UPDATE E2CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;content[lang=$lang]
+									 ;;SupplierRelatedCategoryTitleComponent;Supplier Related Category Title Component;<div class="title">Discovery</div>
+									 ;;SupplierRelatedCategoryContentComponent;Supplier Related Category Content Component;<div class="content">Discover skincare ingredients and formulas that target every one of your concerns</div>
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(uid,$contentCV);name;active[default=true];
+						 ;;SupplierRelatedCategoryInfoSlot;SupplierRelatedCategoryTitleComponent,SupplierRelatedCategoryContentComponent;Supplier Related Category Info Slot
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique = true];uid[unique = true];position[unique = true];page(uid, $contentCV)[unique = true][default = 'e2SupplierLandingPage'];contentSlot(uid, $contentCV)[unique = true];
+                                ;;SupplierRelatedCategoryInfo-e2SupplierLandingPage;SupplierRelatedCategoryInfo;;SupplierRelatedCategoryInfoSlot;
+
+
+# F-Supplier Category Banner
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/png'];altText;folder(qualifier)[default='images']
+				   ;;SupplierRelatedCategoryBannerMedia;P01Logo01Watsons.png;$siteResource/images/theme/P01Logo01Watsons.png;image/png;;
+
+INSERT_UPDATE E2BannerComponent;$contentCV[unique=true];uid[unique=true];name;headline[lang=$lang];content[lang=$lang];media(code, $contentCV)[lang=$lang];urlLink[default='/'];;
+                               ;;SupplierRelatedCategoryBannerComponent1;Supplier Related Category Banner Component1;<div class="headline">GLYCOLIC ACID A</div>;<div class="content">Extollate & glow</div>;SupplierRelatedCategoryBannerMedia;/search?text=glycolic+acid;
+                               ;;SupplierRelatedCategoryBannerComponent2;Supplier Related Category Banner Component2;<div class="headline">GLYCOLIC ACID B</div>;<div class="content">Extollate & glow</div>;SupplierRelatedCategoryBannerMedia;/search?text=glycolic+acid;
+                               ;;SupplierRelatedCategoryBannerComponent3;Supplier Related Category Banner Component3;<div class="headline">GLYCOLIC ACID C</div>;<div class="content">Extollate & glow</div>;SupplierRelatedCategoryBannerMedia;/search?text=glycolic+acid;
+                               ;;SupplierRelatedCategoryBannerComponent4;Supplier Related Category Banner Component4;<div class="headline">GLYCOLIC ACID D</div>;<div class="content">Extollate & glow</div>;SupplierRelatedCategoryBannerMedia;/search?text=glycolic+acid;
+                               ;;SupplierRelatedCategoryBannerComponent5;Supplier Related Category Banner Component5;<div class="headline">GLYCOLIC ACID E</div>;<div class="content">Extollate & glow</div>;SupplierRelatedCategoryBannerMedia;/search?text=glycolic+acid;
+                               ;;SupplierRelatedCategoryBannerComponent6;Supplier Related Category Banner Component6;<div class="headline">GLYCOLIC ACID F</div>;<div class="content">Extollate & glow</div>;SupplierRelatedCategoryBannerMedia;/search?text=glycolic+acid;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique = true];uid[unique = true];name;active[default = true];cmsComponents(uid, $contentCV)
+                         ;;SupplierRelatedCategoryBannerSlot;E2 Supplier Related Category Banner Slot;;SupplierRelatedCategoryBannerComponent1,SupplierRelatedCategoryBannerComponent2,SupplierRelatedCategoryBannerComponent3,SupplierRelatedCategoryBannerComponent4,SupplierRelatedCategoryBannerComponent5,SupplierRelatedCategoryBannerComponent6
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique = true];uid[unique = true];position[unique = true];page(uid, $contentCV)[unique = true][default = 'e2SupplierLandingPage'];contentSlot(uid, $contentCV)[unique = true];
+                                ;;SupplierRelatedCategoryBanner-e2SupplierLandingPage;SupplierRelatedCategoryBanner;;SupplierRelatedCategoryBannerSlot;
+
+
+# G-Blog Post Component
+INSERT_UPDATE E2BlogPostComponent;$contentCV[unique=true];uid[unique=true];name;media(code, $contentCV)[lang=$lang];postDate[dateformat='yyyy-MM-dd'];urlLink;headline[lang=$lang];&componentRef
+								 ;;SupplierPageBlogPost1;Supplier Blog Post 1;SupplierTopBannerMedia;2023-01-20;/;Homepage;SupplierBlogPost1_s
+
+# G-Blog Post Container Component
+INSERT_UPDATE E2BlogPostContainerComponent;$contentCV[unique=true];uid[unique=true];name;blogPosts(&componentRef)
+										  ;;SupplierBlogPostContainerComponent;Supplier Blog Post Container Component;SupplierBlogPost1_s
+
+INSERT_UPDATE ContentSlot;$contentCV[unique = true];uid[unique = true];name;active[default = true];cmsComponents(uid, $contentCV)
+                         ;;SupplierBlogPostContainerSlot;E2 Supplier Blog Post Container Slot;;SupplierBlogPostContainerComponent
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique = true];uid[unique = true];position[unique = true];page(uid, $contentCV)[unique = true][default = 'e2SupplierLandingPage'];contentSlot(uid, $contentCV)[unique = true];
+                                ;;SupplierBlogPost-e2SupplierLandingPage;SupplierBlogPost;;SupplierBlogPostContainerSlot;
+
+
+# H-BMI & BMR component
+INSERT_UPDATE CMSFlexComponent;$contentCV[unique=true];uid[unique=true];name;flexType
+							  ;;CalculatorFlexComponent;BMI and BMR Calculator;CalculatorFlexComponent
+
+INSERT_UPDATE ContentSlot;$contentCV[unique = true];uid[unique = true];name;active[default = true];cmsComponents(uid, $contentCV)
+                         ;;SupplierCalculatorSlot;Supplier Calculator Slot;;CalculatorFlexComponent
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique = true];uid[unique = true];position[unique = true];page(uid, $contentCV)[unique = true][default = 'e2SupplierLandingPage'];contentSlot(uid, $contentCV)[unique = true];
+                                ;;SupplierCalculator-e2SupplierLandingPage;SupplierCalculator;;SupplierCalculatorSlot;
+
+# I-Banner Section 1
+#Banner
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/png'];altText;folder(qualifier)[default='images'];
+				   ;;SupplierBannerSection1Media1;banner04.png;$siteResource/images/theme/banner04.png;image/png;;
+				   ;;SupplierBannerSection1Media2;banner05.png;$siteResource/images/theme/banner05.png;image/png;;
+				   
+INSERT_UPDATE E2BannerComponent;$contentCV[unique=true];uid[unique=true];name;media(code, $contentCV)[lang=$lang];urlLink[default='/']
+							   ;;SupplierBannerSection1Component1;Supplier Banner Section 1 Component 1;SupplierBannerSection1Media1;
+							   ;;SupplierBannerSection1Component2;Supplier Banner Section 1 Component 2;SupplierBannerSection1Media2;
+
+INSERT_UPDATE ContentSlot;$contentCV[unique = true];uid[unique = true];name;active[default = true];cmsComponents(uid, $contentCV)
+                         ;;SupplierBannerSection1Slot;Supplier Banner Section 1 Slot;;SupplierBannerSection1Component1,SupplierBannerSection1Component2
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique = true];uid[unique = true];position[unique = true];page(uid, $contentCV)[unique = true][default = 'e2SupplierLandingPage'];contentSlot(uid, $contentCV)[unique = true];
+                                ;;SupplierBannerSection1-e2SupplierLandingPage;SupplierBannerSection1;;SupplierBannerSection1Slot;
+
+
+# J-Top Brands text
+INSERT_UPDATE E2CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;content[lang=$lang]
+									 ;;SupplierBannerSplitComponent;Supplier Banner Seperate Component;TOP BRANDS
+
+INSERT_UPDATE ContentSlot;$contentCV[unique = true];uid[unique = true];name;active[default = true];cmsComponents(uid, $contentCV)
+                         ;;SupplierBannerSplitSlot;Supplier Banner Split Slot;;SupplierBannerSplitComponent
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique = true];uid[unique = true];position[unique = true];page(uid, $contentCV)[unique = true][default = 'e2SupplierLandingPage'];contentSlot(uid, $contentCV)[unique = true];
+                                ;;SupplierBannerSplit-e2SupplierLandingPage;SupplierBannerSplit;;SupplierBannerSplitSlot;
+
+# J-Banner Section 2
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/png'];altText;folder(qualifier)[default='images'];
+				   ;;SupplierBannerSection2Media1;banner02.png;$siteResource/images/theme/banner02.png;image/png;;
+				   ;;SupplierBannerSection2Media2;banner03.png;$siteResource/images/theme/banner03.png;image/png;;
+
+INSERT_UPDATE E2BannerComponent;$contentCV[unique=true];uid[unique=true];name;media(code, $contentCV)[lang=$lang];urlLink[default='/']
+							   ;;SupplierBannerSection2Component1;Supplier Banner Section 2 Component 1;SupplierBannerSection2Media1
+							   ;;SupplierBannerSection2Component2;Supplier Banner Section 2 Component 2;SupplierBannerSection2Media2
+
+INSERT_UPDATE ContentSlot;$contentCV[unique = true];uid[unique = true];name;active[default = true];cmsComponents(uid, $contentCV)
+                         ;;SupplierBannerSection2Slot;Supplier Banner Section 2 Slot;;SupplierBannerSection2Component1,SupplierBannerSection2Component2
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique = true];uid[unique = true];position[unique = true];page(uid, $contentCV)[unique = true][default = 'e2SupplierLandingPage'];contentSlot(uid, $contentCV)[unique = true];
+                                ;;SupplierBannerSection2-e2SupplierLandingPage;SupplierBannerSection2;;SupplierBannerSection2Slot;
+
+
+# K-Brand Carousel
+INSERT_UPDATE E2BrandCarouselComponent;$contentCV[unique=true];uid[unique=true];name;brands(code, $productCV)
+                                      ;;SupplierBrandCarouselComponent;Supplier Brand Carousel Component;Biore,Ahc,Cellina
+
+INSERT_UPDATE ContentSlot;$contentCV[unique = true];uid[unique = true];name;active[default = true];cmsComponents(uid, $contentCV)
+                         ;;SupplierBrandCarouselSlot;Supplier Brand Carousel Slot;;SupplierBrandCarouselComponent
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique = true];uid[unique = true];position[unique = true];page(uid, $contentCV)[unique = true][default = 'e2SupplierLandingPage'];contentSlot(uid, $contentCV)[unique = true];
+                                ;;SupplierBrandCarousel-e2SupplierLandingPage;SupplierBrandCarousel;;SupplierBrandCarouselSlot;
+
+
+
+# L-Subcategories
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/png'];altText;folder(qualifier)[default='images'];
+				   ;;SupplierSubcategoryMedia;subcategory.png;$siteResource/images/theme/subcategory.png;image/png;;
+
+INSERT_UPDATE E2SubcategoryComponent;$contentCV[unique=true];uid[unique=true];name;image(code, $contentCV);categoryCode;categoryName[lang=$lang]
+									;;SupplierSubcategoryComponent010100;Supplier Subcategory Component 010100;SupplierSubcategoryMedia;010100;Over the Counter test
+									;;SupplierSubcategoryComponent010200;Supplier Subcategory Component 010200;SupplierSubcategoryMedia;010200;First Aid & Surgical
+									;;SupplierSubcategoryComponent010300;Supplier Subcategory Component 010300;SupplierSubcategoryMedia;010300;Health Supplements
+									;;SupplierSubcategoryComponent010400;Supplier Subcategory Component 010400;SupplierSubcategoryMedia;010400;Weight Management
+									;;SupplierSubcategoryComponent010500;Supplier Subcategory Component 010500;SupplierSubcategoryMedia;010500;Health Foods and Drinks
+									;;SupplierSubcategoryComponent010600;Supplier Subcategory Component 010600;SupplierSubcategoryMedia;010600;Breast_Enhancer
+									;;SupplierSubcategoryComponent010700;Supplier Subcategory Component 010700;SupplierSubcategoryMedia;010700;Skin Enhancer
+
+INSERT_UPDATE E2SubcategoriesContainerComponent;$contentCV[unique=true];uid[unique=true];name;subcategories(uid, $contentCV);title[lang=$lang]
+											   ;;SupplierSubcategoryContainerComponent;Supplier Subcategories Container Component;SupplierSubcategoryComponent010100,SupplierSubcategoryComponent010200,SupplierSubcategoryComponent010300,SupplierSubcategoryComponent010400,SupplierSubcategoryComponent010500,SupplierSubcategoryComponent010600,SupplierSubcategoryComponent010700;SUB CATEGORIES
+
+INSERT_UPDATE ContentSlot;$contentCV[unique = true];uid[unique = true];name;active[default = true];cmsComponents(uid, $contentCV)
+                         ;;SupplierSubcategorySlot;Supplier Subcategory Slot;;SupplierSubcategoryContainerComponent
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique = true];uid[unique = true];position[unique = true];page(uid, $contentCV)[unique = true][default = 'e2SupplierLandingPage'];contentSlot(uid, $contentCV)[unique = true];
+                                ;;SupplierSubcategory-e2SupplierLandingPage;SupplierSubcategory;;SupplierSubcategorySlot;
+
+# M-ProductCarousel
+INSERT_UPDATE E2ProductCarouselComponent;$contentCV[unique=true];uid[unique=true];name;title;products(code,$productCV);scroll(code);popup
+                                        ;;SupplierProductCarouselComponent;Supplier Product Carousel Component;Supplier A;BP_30314,BP_17562,BP_1000328,BP_30314,BP_1000324,BP_1000328;allVisible;false
+
+INSERT_UPDATE ContentSlot;$contentCV[unique = true];uid[unique = true];name;active[default = true];cmsComponents(uid, $contentCV)
+                         ;;SupplierProductCarouselSlot;Supplier Product Carousel Slot;;SupplierProductCarouselComponent
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique = true];uid[unique = true];position[unique = true];page(uid, $contentCV)[unique = true][default = 'e2SupplierLandingPage'];contentSlot(uid, $contentCV)[unique = true];
+                                ;;SupplierProductCarousel-e2SupplierLandingPage;SupplierProductCarousel;;SupplierProductCarouselSlot;
+
+# N-Supplier Bottom Banner
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/png'];altText;folder(qualifier)[default='images']
+				           ;;SupplierBottomBannerMedia;SupplierBottomBanner.png;$siteResource/images/theme/SupplierBottomBanner.png;image/png;;
+
+INSERT_UPDATE E2BannerComponent;$contentCV[unique=true];uid[unique=true];name;media(code, $contentCV)[lang=$lang]
+							   ;;SupplierBottomBannerComponent;Supplier Landing Page Bottom Banner Component;SupplierBottomBannerMedia
+
+INSERT_UPDATE ContentSlot;$contentCV[unique = true];uid[unique = true];name;active[default = true];cmsComponents(uid,$contentCV)
+                         ;;SupplierBottomBannerSlot;E2 Supplier Bottom Banner Slot;;SupplierBottomBannerComponent
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique = true];uid[unique = true];position[unique = true];page(uid, $contentCV)[unique = true][default = 'e2SupplierLandingPage'];contentSlot(uid, $contentCV)[unique = true];
+                                ;;SupplierBottomBanner-e2SupplierLandingPage;SupplierBottomBanner;;SupplierBottomBannerSlot;
