@@ -22,3 +22,11 @@ code {
   color: blueviolet;
   cursor: pointer;
 }
+
+main{
+  padding: 1rem;
+}
+
+main>div>details{
+  margin: 1rem;
+}

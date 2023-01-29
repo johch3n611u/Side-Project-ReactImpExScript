@@ -1,3 +1,5 @@
+# supplierLandingPage
+
 $ctgVersion=Staged
 $contentCatalog=wtcmyContentCatalog
 $productCatalog=wtcmyProductCatalog
@@ -124,7 +126,7 @@ INSERT_UPDATE ContentSlotForPage;$contentCV[unique = true];uid[unique = true];po
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/png'];altText;folder(qualifier)[default='images'];
 				   ;;SupplierBannerSection1Media1;banner04.png;$siteResource/images/theme/banner04.png;image/png;;
 				   ;;SupplierBannerSection1Media2;banner05.png;$siteResource/images/theme/banner05.png;image/png;;
-				   
+
 INSERT_UPDATE E2BannerComponent;$contentCV[unique=true];uid[unique=true];name;media(code, $contentCV)[lang=$lang];urlLink[default='/']
 							   ;;SupplierBannerSection1Component1;Supplier Banner Section 1 Component 1;SupplierBannerSection1Media1;
 							   ;;SupplierBannerSection1Component2;Supplier Banner Section 1 Component 2;SupplierBannerSection1Media2;
