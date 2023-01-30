@@ -23,10 +23,25 @@ code {
   cursor: pointer;
 }
 
-main{
+main {
   padding: 1rem;
 }
 
-main>div>details{
+main>div>details {
   margin: 1rem;
+}
+
+table,
+th,
+tr,
+td {
+  border: 1px solid black;
+}
+
+table {
+  margin: 1rem;
+  max-width: 100%;
+  display: inline-block;
+  overflow-x: auto;
+  white-space: nowrap;
 }

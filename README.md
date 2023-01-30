@@ -181,3 +181,21 @@ src
   ├ ...
   └
 ```
+
+## for render & function component render
+
+https://stackoverflow.com/questions/69925618/how-to-render-data-from-api-to-table-in-reactjs-function-component
+
+https://stackoverflow.com/questions/22876978/loop-inside-react-jsx
+
+https://ithelp.ithome.com.tw/articles/10201227
+
+https://www.robinwieruch.de/react-function-component/
+
+## React th colSpan
+
+https://stackoverflow.com/questions/38302507/react-colspan-not-working
+
+## React Render map inside map
+
+https://stackoverflow.com/questions/49094137/reactjs-map-inside-a-map
